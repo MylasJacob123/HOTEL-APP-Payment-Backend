@@ -1,12 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 
 // Middleware to parse JSON
 app.use(bodyParser.json());
+
+app.use(cors({
+  origin: "http://localhost:3002",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
 // Send confirmation email endpoint
 app.post('/send-confirmation', async (req, res) => {
@@ -70,5 +77,5 @@ app.post('/send-confirmation', async (req, res) => {
 // Server setup
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on https://hotel-app-payment-backend-1.onrender.com`);
 });
