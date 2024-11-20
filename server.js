@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: "http://localhost:3002",
+  origin: true,
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
@@ -47,7 +47,7 @@ app.post('/send-confirmation', async (req, res) => {
       subject: 'Booking Confirmation',
       html: `
         <h1>Booking Confirmation</h1>
-        <p>Dear ${firstName} ${lastName},</p>
+        <p>Dear ${payerName},</p>
         <p>Thank you for booking with us! Here are your booking details:</p>
         <ul>
           <li><strong>Room Type:</strong> ${roomType}</li>
